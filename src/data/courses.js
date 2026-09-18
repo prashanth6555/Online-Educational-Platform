@@ -318,10 +318,8 @@ export const courses = [
     level: 'Intermediate',
     price: 32,
     students: 16440,
-    thumbnail:
-      'https://images.unsplash.com/photo-1432888498266-38ffec3bdb47?auto=format&fit=crop&w=1200&q=80',
-    banner:
-      'https://images.unsplash.com/photo-1625296276703-3fbc924f07b5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    thumbnail: '/images/seo-content-growth.jpg',
+    banner: '/images/seo-content-banner.png',
     description:
       'Grow organic traffic with a repeatable content system: keyword research, briefs, on-page SEO, and distribution.',
     outcomes: [

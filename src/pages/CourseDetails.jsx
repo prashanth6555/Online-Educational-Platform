@@ -27,6 +27,7 @@ export default function CourseDetails() {
   }
 
   const enrolled = Boolean(user && isEnrolled(course.id))
+  const isSeoCourse = course.id === 'seo-growth'
 
   const handleEnroll = () => {
     if (!user) {
@@ -40,8 +41,23 @@ export default function CourseDetails() {
   return (
     <div>
       <section className="relative overflow-hidden">
-        <img src={course.banner} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={course.banner}
+          alt={course.title}
+          className={`absolute inset-0 h-full w-full object-cover ${isSeoCourse ? 'seo-banner-image' : ''}`}
+        />
         <div className="absolute inset-0 bg-slate-950/75" />
+        {isSeoCourse ? (
+          <div className="pointer-events-none absolute right-6 bottom-8 hidden items-end gap-1.5 sm:flex">
+            {[40, 64, 52, 88, 70, 96].map((height, index) => (
+              <span
+                key={height}
+                className="seo-search-bar w-2.5 rounded-full bg-emerald-400/90"
+                style={{ height, animationDelay: `${index * 0.14}s` }}
+              />
+            ))}
+          </div>
+        ) : null}
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">{course.category}</p>
           <h1 className="mt-3 max-w-3xl text-3xl font-extrabold text-white sm:text-5xl">{course.title}</h1>
@@ -150,7 +166,14 @@ export default function CourseDetails() {
         </div>
 
         <aside className="lg:sticky lg:top-24 h-fit rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-200">
-          <img src={course.thumbnail} alt="" className="h-40 w-full rounded-xl object-cover" />
+          <div className="relative overflow-hidden rounded-xl">
+            <img
+              src={course.thumbnail}
+              alt={course.title}
+              className={`h-40 w-full object-cover ${isSeoCourse ? 'seo-card-image' : ''}`}
+            />
+            {isSeoCourse ? <div className="seo-card-shine" /> : null}
+          </div>
           <p className="mt-4 text-3xl font-extrabold text-slate-900">{course.price === 0 ? 'Free' : `$${course.price}`}</p>
           <button
             type="button"

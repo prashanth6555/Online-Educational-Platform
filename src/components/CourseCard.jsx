@@ -1,18 +1,34 @@
-import { Clock, Star } from 'lucide-react'
+import { Clock, Star, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export default function CourseCard({ course }) {
+  const isSeoCourse = course.id === 'seo-growth'
+
   return (
     <Link
       to={`/courses/${course.id}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-indigo-200 hover:shadow-xl"
+      className={`group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+        isSeoCourse
+          ? 'border-indigo-200 ring-2 ring-indigo-100 hover:border-indigo-300 hover:shadow-indigo-200/70'
+          : 'border-slate-200 hover:border-indigo-200'
+      }`}
     >
       <div className="relative overflow-hidden">
         <img
           src={course.thumbnail}
           alt={course.title}
-          className="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+          className={`h-44 w-full object-cover transition duration-500 group-hover:scale-105 ${
+            isSeoCourse ? 'seo-card-image' : ''
+          }`}
         />
+        {isSeoCourse ? (
+          <>
+            <div className="seo-card-shine" />
+            <span className="seo-rank-chip absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-white shadow-lg shadow-emerald-500/30">
+              <TrendingUp size={13} /> Rank #1
+            </span>
+          </>
+        ) : null}
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-indigo-700 backdrop-blur">
           {course.category}
         </span>

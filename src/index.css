@@ -101,6 +101,94 @@ body {
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.14) translate3d(-2%, 1.5%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+
+@keyframes rank-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes search-bar {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.seo-card-image {
+  animation: ken-burns 10s ease-in-out infinite;
+}
+
+.seo-card-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.seo-card-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  animation: shine-sweep 2.8s ease-in-out infinite;
+}
+
+.seo-rank-chip {
+  animation: rank-float 2.4s ease-in-out infinite;
+}
+
+.seo-banner-image {
+  animation: ken-burns 14s ease-in-out infinite;
+}
+
+.seo-search-bar {
+  transform-origin: bottom;
+  animation: search-bar 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seo-card-image,
+  .seo-card-shine::after,
+  .seo-rank-chip,
+  .seo-banner-image,
+  .seo-search-bar {
+    animation: none !important;
+  }
+}
+
 .progress-fill {
   width: 0;
   transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
